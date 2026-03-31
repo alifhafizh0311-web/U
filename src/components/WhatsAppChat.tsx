@@ -66,7 +66,8 @@ export default function WhatsAppChat() {
 _Segera hubungi klien untuk konfirmasi!_`;
 
       try {
-        await axios.post("/api/notify-telegram", { message: telegramMessage });
+        const apiUrl = import.meta.env.VITE_API_URL || "";
+        await axios.post(`${apiUrl}/api/notify-telegram`, { message: telegramMessage });
       } catch (err) {
         console.warn("Failed to send Telegram notification:", err);
       }
