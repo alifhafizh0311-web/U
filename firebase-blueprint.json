@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "User feedback and reviews.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "User's name" },
+        "message": { "type": "string", "description": "User's feedback message" },
+        "rating": { "type": "number", "description": "User's rating (1-5)" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the testimonial was created" }
+      },
+      "required": ["name", "message", "createdAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order details.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Customer's name" },
+        "phone": { "type": "string", "description": "Customer's WhatsApp number" },
+        "service": { "type": "string", "description": "Service ordered" },
+        "budget": { "type": "number", "description": "Customer's budget" },
+        "features": { "type": "string", "description": "Desired features" },
+        "promoCode": { "type": "string", "description": "Promo code used" },
+        "message": { "type": "string", "description": "Customer's message" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "completed"], "description": "Order status" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the order was placed" },
+        "uid": { "type": "string", "description": "User ID of the customer" }
+      },
+      "required": ["name", "service", "budget", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/testimonials/{testimonialId}": {
+      "schema": "Testimonial",
+      "description": "Public testimonials collection."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Private orders collection."
+    }
+  }
+}
